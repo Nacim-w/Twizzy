@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twizzy/main.dart';
+import 'package:twizzy/views/blog.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -11,6 +13,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // Optional: Removes debug banner
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blueAccent,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) =>  BlogScreen()),
+            );
+          },
+          child: const Icon(Icons.arrow_forward, color: Colors.white, size: 28),
+          ),
         appBar: AppBar(
           title: Text(
             "Profile",
@@ -82,7 +93,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   leading: Icon(Icons.logout, color: Colors.redAccent),
                   title: Text("Logout"),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  onTap: () {
+                     Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) =>  Home()),
+            );
+                  },
                 ),
               ],
             ),

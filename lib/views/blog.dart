@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twizzy/views/profile.dart';
 
 class BlogScreen extends StatefulWidget {
   @override
@@ -88,6 +89,15 @@ class _BlogScreenState extends State<BlogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blueAccent,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) =>  ProfileScreen()),
+            );
+          },
+          child: const Icon(Icons.arrow_forward, color: Colors.white, size: 28),
+          ),
       appBar: AppBar(
         title: Text(
           "Blog",
