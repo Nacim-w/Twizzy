@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:twizzy/models/post_model.dart';
 import 'dart:convert';
-
-import 'package:twizzy/views/profile.dart';
-
 class BlogScreen extends StatefulWidget {
   @override
   _BlogScreenState createState() => _BlogScreenState();
 }
 
 class _BlogScreenState extends State<BlogScreen> {
-  List<String> blogPosts = [];
+  List<Post> blogPosts = [];
   List<bool> hasLiked = [];
   List<bool> hasDisliked = [];
   List<int> likes = [];
@@ -26,9 +24,13 @@ class _BlogScreenState extends State<BlogScreen> {
         final List<dynamic> data = json.decode(response.body);
 
         setState(() {
-          // Extract content and update blogPosts
-          blogPosts = data.map((item) => item['content'].toString()).toList();
-          initializePostData(); // Initialize post data after fetching the posts
+          blogPosts = data
+              .map((item) => Post(
+                    id: item['id'].toString(),
+                    content: item['content'].toString(),
+                  ))
+              .toList();
+          initializePostData(); 
         });
       } else {
         print("Error: ${response.statusCode}");
@@ -50,7 +52,7 @@ class _BlogScreenState extends State<BlogScreen> {
 
       if (response.statusCode == 200) {
         print("Post added successfully");
-        fetchBlogPost(); // Refresh the blog list after adding
+        fetchBlogPost(); 
       } else {
         print("Error: ${response.statusCode}");
       }
@@ -73,10 +75,8 @@ class _BlogScreenState extends State<BlogScreen> {
     super.initState();
     fetchBlogPost();
   }
-
   void showAddPostDialog() {
     String newPostContent = '';
-
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -165,10 +165,7 @@ class _BlogScreenState extends State<BlogScreen> {
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-              );
+              Navigator.pushReplacementNamed(context, '/profile');
             },
             color: Colors.white,
           ),
@@ -180,12 +177,11 @@ class _BlogScreenState extends State<BlogScreen> {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
         ),
       ),
-    floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.green,
-            onPressed: showAddPostDialog, // Open form to add a new post
-            child: Icon(Icons.add, color: Colors.white),
-          ),
-
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: showAddPostDialog, // Open form to add a new post
+        child: Icon(Icons.add, color: Colors.white),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
@@ -202,7 +198,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      blogPosts[index], // Display blog content
+                      blogPosts[index].content, // Display blog content
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:twizzy/main.dart';
-import 'package:twizzy/views/blog.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -13,15 +13,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blueAccent,
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => BlogScreen()),
-            );
-          },
-          child: const Icon(Icons.arrow_forward, color: Colors.white, size: 28),
-        ),
         appBar: AppBar(
           title: Text(
             "Profile",
@@ -76,13 +67,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Divider(),
                 ListTile(
-                  leading: Icon(Icons.email, color: Colors.blueAccent),
-                  title: Text("Edit Email"),
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
-                ),
-                Divider(),
-                ListTile(
                   leading: Icon(Icons.lock, color: Colors.blueAccent),
                   title: Text("Change Password"),
                   trailing: Icon(Icons.arrow_forward_ios),
@@ -94,9 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: Text("Logout"),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Home()),
-                    );
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                 ),
               ],
