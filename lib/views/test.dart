@@ -10,7 +10,7 @@ class BlogScreen extends StatefulWidget {
 }
 
 class _BlogScreenState extends State<BlogScreen> {
-  List<String> blogPosts = [];
+  List<String> blogPosts = []; 
   List<bool> hasLiked = [];
   List<bool> hasDisliked = [];
   List<int> likes = [];
@@ -37,8 +37,7 @@ class _BlogScreenState extends State<BlogScreen> {
       print("Exception: $e");
     }
   }
-
-  Future<void> addBlogPost(String content) async {
+Future<void> addBlogPost(String content) async {
     final url = Uri.parse('http://192.168.1.234/twizzy/insert.php');
 
     try {
@@ -74,105 +73,115 @@ class _BlogScreenState extends State<BlogScreen> {
     fetchBlogPost();
   }
 
-  void showAddPostDialog() {
-    String newPostContent = '';
+void showAddPostDialog() {
+  String newPostContent = '';
 
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "New Blog Post",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "New Blog Post",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
               ),
-              SizedBox(height: 12),
-              TextField(
-                onChanged: (value) => newPostContent = value,
-                decoration: InputDecoration(
-                  hintText: "Enter blog content",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
-                  contentPadding: EdgeInsets.all(10),
+            ),
+            SizedBox(height: 12),
+            TextField(
+              onChanged: (value) => newPostContent = value,
+              decoration: InputDecoration(
+                hintText: "Enter blog content",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.blueAccent),
                 ),
-                maxLines: 5,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.blueAccent),
+                ),
+                contentPadding: EdgeInsets.all(10),
               ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      "Cancel",
-                      style: TextStyle(color: Colors.blueAccent),
+              maxLines: 5,
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    if (newPostContent.isNotEmpty) {
+                      addBlogPost(newPostContent);
+                      Navigator.pop(context);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (newPostContent.isNotEmpty) {
-                        addBlogPost(newPostContent);
-                        Navigator.pop(context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text("Post"),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  child: Text("Post"),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Colors.green,
+            onPressed: showAddPostDialog, // Open form to add a new post
+            child: Icon(Icons.add, color: Colors.white),
+          ),
+          SizedBox(height: 10),
+          FloatingActionButton(
+            backgroundColor: Colors.blueAccent,
+            onPressed: (){
+               Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  ProfileScreen()),
+  );
+            }, // Refresh posts
+            child: Icon(Icons.arrow_forward, color: Colors.white),
+          ),
+        ],
+      ),
       appBar: AppBar(
         title: Text(
           "Blog",
           style: TextStyle(
               fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-              );
-            },
-            color: Colors.white,
-          ),
-        ],
         backgroundColor: Colors.blueAccent,
         elevation: 4,
         centerTitle: true,
@@ -180,12 +189,6 @@ class _BlogScreenState extends State<BlogScreen> {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
         ),
       ),
-    floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.green,
-            onPressed: showAddPostDialog, // Open form to add a new post
-            child: Icon(Icons.add, color: Colors.white),
-          ),
-
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
@@ -294,7 +297,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         ),
                       ],
                     ),
-                    if (comments[index].isNotEmpty) ...[
+                    if (comments[index].isNotEmpty) ...[ 
                       Divider(),
                       Text('Comments:',
                           style: TextStyle(

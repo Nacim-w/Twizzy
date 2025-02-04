@@ -11,17 +11,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Optional: Removes debug banner
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blueAccent,
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) =>  BlogScreen()),
+              MaterialPageRoute(builder: (context) => BlogScreen()),
             );
           },
           child: const Icon(Icons.arrow_forward, color: Colors.white, size: 28),
-          ),
+        ),
         appBar: AppBar(
           title: Text(
             "Profile",
@@ -94,9 +94,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: Text("Logout"),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                     Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) =>  Home()),
-            );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
                   },
                 ),
               ],
