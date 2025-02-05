@@ -4,6 +4,7 @@ import 'package:twizzy/screens/register_screen.dart';
 import 'package:twizzy/screens/blog_screen.dart';
 import 'package:twizzy/screens/login_screen.dart';
 import 'package:twizzy/screens/profile_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,19 +13,25 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: Login(),
-      routes: {
-        '/login':(context)  => const Login(),
-        '/register':(context) => const Register(),
-        '/profile':(context) =>  ProfileScreen(),
-        '/blog':(context) => BlogScreen(),
-        '/edit_profile':(context) => EditProfileScreen(),
-      },
-    );
+    return ScreenUtilInit(
+        designSize:
+            Size(375, 812), 
+        minTextAdapt: true,
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.light().copyWith(
+              scaffoldBackgroundColor: Colors.white,
+            ),
+            home: Login(),
+            routes: {
+              '/login': (context) => const Login(),
+              '/register': (context) => const Register(),
+              '/profile': (context) => ProfileScreen(),
+              '/blog': (context) => BlogScreen(),
+              '/edit_profile': (context) => EditProfileScreen(),
+            },
+          );
+        });
   }
 }

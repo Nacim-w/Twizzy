@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -17,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: Text(
             "Profile",
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 22.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -27,13 +28,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           centerTitle: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
+              bottom: Radius.circular(20.r),
             ),
           ),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -41,24 +42,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   radius: 50,
                   backgroundImage: AssetImage('images/avatar.jpg'),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 Text(
                   "John Doe",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Text(
                   "johndoe@example.com",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Colors.black54,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 ListTile(
                   leading: Icon(Icons.person, color: Colors.blueAccent),
                   title: Text("Edit Information"),

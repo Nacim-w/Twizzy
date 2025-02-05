@@ -1,6 +1,7 @@
 import 'dart:convert'; 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http; 
 import 'package:twizzy/screens/blog_screen.dart'; 
 
@@ -80,12 +81,12 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding:  EdgeInsets.symmetric(horizontal: 24.0.w),
           child: Container(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(24.w),
             decoration: BoxDecoration(
               color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -101,12 +102,12 @@ class _RegisterState extends State<Register> {
                 Text(
                   'Register',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 TextField(
                   controller: _usernameController,
                   style: TextStyle(color: Colors.black87),
@@ -116,14 +117,14 @@ class _RegisterState extends State<Register> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 TextField(
                   controller: _passwordController,
                   style: TextStyle(color: Colors.black87),
@@ -134,14 +135,14 @@ class _RegisterState extends State<Register> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 TextField(
                   controller: _confirmPasswordController,
                   style: TextStyle(color: Colors.black87),
@@ -152,14 +153,14 @@ class _RegisterState extends State<Register> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 25.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -167,7 +168,7 @@ class _RegisterState extends State<Register> {
                       onPressed: _exitApp,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 15),
+                            horizontal: 30.w, vertical: 15.h),
                         backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -175,27 +176,27 @@ class _RegisterState extends State<Register> {
                       ),
                       child: Text(
                         'Exit',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () => _register(context),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 15),
+                            horizontal: 30.w, vertical: 15.h),
                         backgroundColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
                       ),
                       child: Text(
                         'Register',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/login');

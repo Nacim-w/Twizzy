@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddPostDialog extends StatefulWidget {
   final Function(String) onPostAdded;
@@ -16,10 +17,10 @@ class _AddPostDialogState extends State<AddPostDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.w),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(16.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,29 +28,29 @@ class _AddPostDialogState extends State<AddPostDialog> {
             Text(
               "New Blog Post",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueAccent,
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextField(
               onChanged: (value) => newPostContent = value,
               decoration: InputDecoration(
                 hintText: "Enter blog content",
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(color: Colors.blueAccent),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(color: Colors.blueAccent),
                 ),
-                contentPadding: EdgeInsets.all(10),
+                contentPadding: EdgeInsets.all(10.w),
               ),
               maxLines: 5,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -60,7 +61,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
                     style: TextStyle(color: Colors.blueAccent),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 10.w),
                 ElevatedButton(
                   onPressed: () {
                     if (newPostContent.isNotEmpty) {
@@ -71,9 +72,9 @@ class _AddPostDialogState extends State<AddPostDialog> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
                   child: Text("Post"),

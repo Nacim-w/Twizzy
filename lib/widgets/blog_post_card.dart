@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twizzy/models/post_model.dart';
 
 class BlogPostCard extends StatefulWidget {
@@ -87,17 +88,17 @@ class _BlogPostCardState extends State<BlogPostCard> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       elevation: 3,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(12.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.post.content, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
+            Text(widget.post.content, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8.h),
             Row(
               children: [
                 IconButton(icon: Icon(Icons.thumb_up, color: hasLiked ? Colors.blue : Colors.grey), onPressed: toggleLike),
                 Text('$likes'),
-                SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 IconButton(icon: Icon(Icons.thumb_down, color: hasDisliked ? Colors.red : Colors.grey), onPressed: toggleDislike),
                 Text('$dislikes'),
                 Spacer(),

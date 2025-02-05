@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twizzy/services/api_service.dart'; 
 
 class Login extends StatefulWidget {
@@ -51,17 +52,17 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Container(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(24.w),
             decoration: BoxDecoration(
               color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
-                  blurRadius: 10,
-                  spreadRadius: 2,
+                  blurRadius: 10.r,
+                  spreadRadius: 2.r,
                   offset: Offset(0, 5),
                 ),
               ],
@@ -72,12 +73,12 @@ class _LoginState extends State<Login> {
                 Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 TextField(
                   controller: _usernameController,
                   style: TextStyle(color: Colors.black87),
@@ -87,14 +88,14 @@ class _LoginState extends State<Login> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 TextField(
                   controller: _passwordController,
                   style: TextStyle(color: Colors.black87),
@@ -105,31 +106,31 @@ class _LoginState extends State<Login> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 25.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
                       onPressed: _exitApp,
                       style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.w, vertical: 15.h),
                         backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
                       ),
                       child: Text(
                         'Exit',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -137,24 +138,24 @@ class _LoginState extends State<Login> {
                     ElevatedButton(
                       onPressed: () => _login(context),
                       style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.w, vertical: 15.h),
                         backgroundColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
                       ),
                       child: Text(
                         'Login',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushReplacementNamed(context, '/register');
@@ -162,7 +163,7 @@ class _LoginState extends State<Login> {
                   child: Text(
                     'Don\'t have an account? Register here',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,

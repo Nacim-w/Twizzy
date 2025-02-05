@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -13,11 +14,11 @@ class SearchBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+      padding:  EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.0.h),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -33,7 +34,7 @@ class SearchBarWidget extends StatelessWidget {
             hintText: "Search posts...",
             prefixIcon: Icon(Icons.search, color: Colors.grey),
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
           ),
         ),
       ),
