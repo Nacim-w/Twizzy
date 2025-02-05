@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:twizzy/views/Register.dart';
-import 'package:twizzy/views/blog.dart';
-import 'package:twizzy/views/login.dart';
-import 'package:twizzy/views/profile.dart';
+import 'package:twizzy/screens/register_screen.dart';
+import 'package:twizzy/screens/blog_screen.dart';
+import 'package:twizzy/screens/login_screen.dart';
+import 'package:twizzy/screens/profile_screen.dart';
 
 void main() {
   runApp(MyApp());

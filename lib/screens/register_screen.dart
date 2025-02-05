@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http; 
-import 'package:twizzy/views/blog.dart'; 
+import 'package:twizzy/screens/blog_screen.dart'; 
 
 class Register extends StatefulWidget {
   const Register({super.key});
