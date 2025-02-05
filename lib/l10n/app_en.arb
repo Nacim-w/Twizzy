@@ -1,0 +1,95 @@
+{
+  "@@locale": "en",
+  "username": "Username",
+  "@username": {
+    "description": "hint text for username field"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "hint text for login "
+  },
+  "email": "Email",
+  "@email": {
+    "description": "hint text for email field"
+  },
+  "register": "register",
+  "@register": {
+    "description": "A simple register msg"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "password"
+  },
+  "exit": "Exit",
+  "@exit": {
+    "description": "hit to exit the app"
+  },
+  "gotoregister": "Don't have an account? Register",
+  "@gotoregister": {
+    "description": " go to register page"
+  },
+  "gotologin": "already have an account? Login",
+  "@gotologin": {
+    "description": " go to login page"
+  },
+  "confirmpassword": "Confirm Password",
+  "@confirmpassword": {
+    "description": "confirm password"
+  },
+  "searchposts": "Search Posts...",
+  "@searchposts": {
+    "description": "password"
+  },
+  "addcomment": "Add Comment",
+  "@addcomment": {
+    "description": "add comment"
+  },
+  "newblogpost": "New Blog Post",
+  "@newblogpost": {
+    "description": "New Blog Post"
+  },
+  "blogcontent": "Enter blog content",
+  "@blogcontent": {
+    "description": "Enter blog content"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "cancel"
+  },
+  "changelanguage": "Change Language",
+  "@changelanguage": {
+    "description": "Change Language"
+  },
+  "postbutton": "Post",
+  "@postbutton": {
+    "description": "Post button"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "profile"
+  },
+  "editinformation": "Edit Information",
+  "@editinformation": {
+    "description": "edit information"
+  },
+  "changepassword": "Change Password",
+  "@changepassword": {
+    "description": "change password"
+  },
+  "logout": "logout",
+  "@logout": {
+    "description": "logout"
+  },
+  "savechanges": "Save Changes",
+  "@savechanges": {
+    "description": "save changes"
+  },
+  "editprofile": "Edit Profile",
+  "@editprofile": {
+    "description": "Edit Profile"
+  },
+  "multipleLanguages": "Multiple Languages",
+  "@multipleLanguages": {
+    "description": "App title"
+  }
+}

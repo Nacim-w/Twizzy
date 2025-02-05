@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -9,7 +10,7 @@ class EditProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Edit Profile", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(AppLocalizations.of(context)!.editprofile, style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
@@ -38,9 +39,9 @@ class EditProfileScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 30.h),
-            _buildInputField("Name", "John Doe"),
+            _buildInputField(AppLocalizations.of(context)!.username, "John Doe"),
             SizedBox(height: 15.h),
-            _buildInputField("Email", "johndoe@example.com"),
+            _buildInputField(AppLocalizations.of(context)!.email, "johndoe@example.com"),
             SizedBox(height: 25.h),
             SizedBox(
               width: double.infinity,
@@ -54,7 +55,7 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  "Save Changes",
+                  AppLocalizations.of(context)!.savechanges,
                   style: TextStyle(
                     fontSize: 10.sp,
                     fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class EditProfileScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(color: Colors.grey.shade300),
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           ),
         ),
       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twizzy/models/post_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BlogPostCard extends StatefulWidget {
   final Post post;
   final Function(String) onCommentAdded;
@@ -60,13 +60,13 @@ class _BlogPostCardState extends State<BlogPostCard> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Add Comment'),
+        title: Text(AppLocalizations.of(context)!.addcomment),
         content: TextField(
           onChanged: (value) => newComment = value,
-          decoration: InputDecoration(hintText: 'Enter your comment'),
+          decoration: InputDecoration(hintText: AppLocalizations.of(context)!.addcomment),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context)!.cancel)),
           TextButton(
             onPressed: () {
               if (newComment.isNotEmpty) {
@@ -74,7 +74,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                 Navigator.pop(context);
               }
             },
-            child: Text('Post'),
+            child: Text(AppLocalizations.of(context)!.postbutton),
           ),
         ],
       ),
@@ -105,7 +105,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                 TextButton.icon(
                   onPressed: showCommentDialog,
                   icon: Icon(Icons.comment, color: Colors.blueAccent),
-                  label: Text('Add Comment', style: TextStyle(color: Colors.blueAccent)),
+                  label: Text(AppLocalizations.of(context)!.addcomment, style: TextStyle(color: Colors.blueAccent)),
                 ),
               ],
             ),

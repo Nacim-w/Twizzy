@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class AddPostDialog extends StatefulWidget {
   final Function(String) onPostAdded;
@@ -26,7 +28,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "New Blog Post",
+              AppLocalizations.of(context)!.newblogpost,
               style: TextStyle(
                 fontSize: 10.sp,
                 fontWeight: FontWeight.bold,
@@ -37,7 +39,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
             TextField(
               onChanged: (value) => newPostContent = value,
               decoration: InputDecoration(
-                hintText: "Enter blog content",
+                hintText: AppLocalizations.of(context)!.blogcontent,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(color: Colors.blueAccent),
@@ -57,7 +59,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text(
-                    "Cancel",
+                    AppLocalizations.of(context)!.cancel,
                     style: TextStyle(color: Colors.blueAccent),
                   ),
                 ),
@@ -77,7 +79,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  child: Text("Post"),
+                  child: Text(AppLocalizations.of(context)!.postbutton),
                 ),
               ],
             ),

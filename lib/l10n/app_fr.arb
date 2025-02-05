@@ -1,0 +1,91 @@
+{
+    "@@locale": "fr",
+    "username": "Nom d'utilisateur",
+    "@username": {
+        "description": "texte indicatif pour le champ du nom d'utilisateur"
+    },
+    "login": "Connecter",
+    "@login": {
+      "description": "hint text for Connecter "
+    },
+    "email": "E-mail",
+    "@email": {
+        "description": "texte indicatif pour le champ de l'e-mail"
+    },
+    "register": "Inscription",
+  "@register": {
+    "description": "A simple register msg"
+  },
+  "cancel": "Annuler",
+  "@cancel": {
+    "description": "A simple register msg"
+  },
+  "changelanguage": "Changer Langage",
+  "@changelanguage": {
+    "description": "Change Language"
+  },
+    "password": "Mot de passe",
+    "@password": {
+        "description": "mot de passe"
+    },
+    "exit": "Quitter",
+    "@exit": {
+        "description": "appuyer pour quitter l'application"
+    },
+    "gotoregister": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "@gotoregister": {
+        "description": "aller à la page d'inscription"
+    },
+    "confirmpassword": "Confirmer le mot de passe",
+    "@confirmpassword": {
+        "description": "confirmer le mot de passe"
+    },
+    "searchposts": "Rechercher des publications...",
+    "@searchposts": {
+        "description": "rechercher des publications"
+    },
+    "addcomment": "Ajouter un commentaire",
+    "@addcomment": {
+        "description": "ajouter un commentaire"
+    },
+    "newblogpost": "Nouvel article de blog",
+    "@newblogpost": {
+        "description": "nouvel article de blog"
+    },
+    "blogcontent": "Saisir le contenu du blog",
+    "@blogcontent": {
+        "description": "saisir le contenu du blog"
+    },
+    "postbutton": "Publier",
+    "@postbutton": {
+        "description": "bouton de publication"
+    },
+    "profile": "Profil",
+    "@profile": {
+        "description": "profil"
+    },
+    "editinformation": "Modifier les informations",
+    "@editinformation": {
+        "description": "modifier les informations"
+    },
+    "changepassword": "Changer le mot de passe",
+    "@changepassword": {
+        "description": "changer le mot de passe"
+    },
+    "logout": "Déconnexion",
+    "@logout": {
+        "description": "déconnexion"
+    },
+    "savechanges": "Enregistrer les modifications",
+    "@savechanges": {
+        "description": "enregistrer les modifications"
+    },
+    "editprofile": "Modifier le profil",
+    "@editprofile": {
+        "description": "modifier le profil"
+    },
+    "multipleLanguages": "Langues multiples",
+    "@multipleLanguages": {
+        "description": "Titre de l'application"
+    }
+}

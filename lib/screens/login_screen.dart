@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twizzy/services/api_service.dart'; 
+import 'package:twizzy/services/api_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  final Function(String) changeLanguage; // Function to change language
+
+  const Login({super.key, required this.changeLanguage});
 
   @override
   State<Login> createState() => _LoginState();
@@ -70,8 +73,31 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.language),
+                      onPressed: () {
+                        final currentLocale =
+                            Localizations.localeOf(context).languageCode;
+                        final newLocale = currentLocale == 'en' ? 'fr' : 'en';
+                        widget.changeLanguage(newLocale);
+                      },
+                    ),
+                    Text(
+                      Localizations.localeOf(context).languageCode == 'en'
+                          ? 'EN'
+                          : 'FR',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
                 Text(
-                  'Login',
+                  AppLocalizations.of(context)!.login,
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
@@ -83,7 +109,7 @@ class _LoginState extends State<Login> {
                   controller: _usernameController,
                   style: TextStyle(color: Colors.black87),
                   decoration: InputDecoration(
-                    hintText: 'Username',
+                    hintText: AppLocalizations.of(context)!.username,
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
@@ -101,7 +127,7 @@ class _LoginState extends State<Login> {
                   style: TextStyle(color: Colors.black87),
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: AppLocalizations.of(context)!.password,
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
@@ -128,7 +154,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       child: Text(
-                        'Exit',
+                        AppLocalizations.of(context)!.exit,
                         style: TextStyle(
                             fontSize: 8.sp,
                             fontWeight: FontWeight.bold,
@@ -146,7 +172,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       child: Text(
-                        'Login',
+                        AppLocalizations.of(context)!.login,
                         style: TextStyle(
                             fontSize: 8.sp,
                             fontWeight: FontWeight.bold,
@@ -161,7 +187,7 @@ class _LoginState extends State<Login> {
                     Navigator.pushReplacementNamed(context, '/register');
                   },
                   child: Text(
-                    'Don\'t have an account? Register here',
+                    AppLocalizations.of(context)!.gotoregister,
                     style: TextStyle(
                       fontSize: 7.sp,
                       color: Colors.blueAccent,

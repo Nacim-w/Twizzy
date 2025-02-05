@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -31,7 +32,7 @@ class SearchBarWidget extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           decoration: InputDecoration(
-            hintText: "Search posts...",
+            hintText: AppLocalizations.of(context)!.searchposts,
             prefixIcon: Icon(Icons.search, color: Colors.grey),
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http; 
 import 'package:twizzy/screens/blog_screen.dart'; 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -100,7 +101,7 @@ class _RegisterState extends State<Register> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Register',
+                  AppLocalizations.of(context)!.register,
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -112,7 +113,7 @@ class _RegisterState extends State<Register> {
                   controller: _usernameController,
                   style: TextStyle(color: Colors.black87),
                   decoration: InputDecoration(
-                    hintText: 'username',
+                    hintText: AppLocalizations.of(context)!.username,
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
@@ -130,7 +131,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.black87),
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: AppLocalizations.of(context)!.password,
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
@@ -148,7 +149,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.black87),
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Confirm Password',
+                    hintText: AppLocalizations.of(context)!.confirmpassword,
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
@@ -190,7 +191,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       child: Text(
-                        'Register',
+                        AppLocalizations.of(context)!.register,
                         style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
@@ -202,7 +203,7 @@ class _RegisterState extends State<Register> {
                     Navigator.pushNamed(context, '/login');
                   },
                   child: Text(
-                    'Already have an account? Login here',
+                    AppLocalizations.of(context)!.gotologin,
                     style: TextStyle(
                       fontSize: 7.sp,
                       color: Colors.blueAccent,
