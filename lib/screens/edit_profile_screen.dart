@@ -56,7 +56,7 @@ class EditProfileScreen extends StatelessWidget {
                 child: Text(
                   "Save Changes",
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -75,7 +75,7 @@ class EditProfileScreen extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: Colors.black87),
+          style: TextStyle(fontSize: 7.sp, fontWeight: FontWeight.w600, color: Colors.black87),
         ),
         SizedBox(height: 5.h),
         TextField(
@@ -89,7 +89,7 @@ class EditProfileScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(color: Colors.grey.shade300),
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
           ),
         ),
       ],

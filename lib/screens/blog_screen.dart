@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twizzy/models/post_model.dart';
 import 'package:twizzy/services/api_service.dart';
 import 'package:twizzy/widgets/blog_post_card.dart';
@@ -60,7 +61,7 @@ class _BlogScreenState extends State<BlogScreen> {
         title: Text("Blog", style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.white)),
         actions: [
           IconButton(
-            icon: const Icon(Icons.person,color: Colors.white,),
+            icon:  Icon(Icons.person,color: Colors.white,size: 30.r,),
             onPressed: () =>
                 Navigator.pushReplacementNamed(context, '/profile'),
           ),

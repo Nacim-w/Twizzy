@@ -18,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: Text(
             "Profile",
             style: TextStyle(
-              fontSize: 22.sp,
+              fontSize: 12.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -39,14 +39,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  radius: 50,
+                  radius: 50.r,
                   backgroundImage: AssetImage('images/avatar.jpg'),
                 ),
                 SizedBox(height: 16.h),
                 Text(
                   "John Doe",
                   style: TextStyle(
-                    fontSize: 22.sp,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Text(
                   "johndoe@example.com",
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 10.sp,
                     color: Colors.black54,
                   ),
                 ),

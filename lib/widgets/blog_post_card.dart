@@ -92,7 +92,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.post.content, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+            Text(widget.post.content, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.h),
             Row(
               children: [

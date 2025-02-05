@@ -102,7 +102,7 @@ class _RegisterState extends State<Register> {
                 Text(
                   'Register',
                   style: TextStyle(
-                    fontSize: 24.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
@@ -162,28 +162,28 @@ class _RegisterState extends State<Register> {
                 ),
                 SizedBox(height: 25.h),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       onPressed: _exitApp,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 30.w, vertical: 15.h),
+                            horizontal: 20.w, vertical: 15.h),
                         backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
                       ),
                       child: Text(
                         'Exit',
-                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () => _register(context),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 30.w, vertical: 15.h),
+                            horizontal: 12.w, vertical: 15.h),
                         backgroundColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.r),
@@ -191,7 +191,7 @@ class _RegisterState extends State<Register> {
                       ),
                       child: Text(
                         'Register',
-                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                   ],
@@ -204,7 +204,7 @@ class _RegisterState extends State<Register> {
                   child: Text(
                     'Already have an account? Login here',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 7.sp,
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,

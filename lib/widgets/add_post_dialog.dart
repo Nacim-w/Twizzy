@@ -28,7 +28,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
             Text(
               "New Blog Post",
               style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 10.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueAccent,
               ),
@@ -72,7 +72,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),
