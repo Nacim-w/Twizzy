@@ -61,9 +61,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: 20),
                 ListTile(
                   leading: Icon(Icons.person, color: Colors.blueAccent),
-                  title: Text("Edit Name"),
+                  title: Text("Edit Information"),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/edit_profile');
+                  },
                 ),
                 Divider(),
                 ListTile(

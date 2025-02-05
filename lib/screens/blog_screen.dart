@@ -60,7 +60,7 @@ class _BlogScreenState extends State<BlogScreen> {
         title: Text("Blog", style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.white)),
         actions: [
           IconButton(
-            icon: const Icon(Icons.person, color: Colors.white,),
+            icon: const Icon(Icons.person,color: Colors.white,),
             onPressed: () =>
                 Navigator.pushReplacementNamed(context, '/profile'),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twizzy/screens/edit_profile_screen.dart';
 import 'package:twizzy/screens/register_screen.dart';
 import 'package:twizzy/screens/blog_screen.dart';
 import 'package:twizzy/screens/login_screen.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/register':(context) => const Register(),
         '/profile':(context) =>  ProfileScreen(),
         '/blog':(context) => BlogScreen(),
+        '/edit_profile':(context) => EditProfileScreen(),
       },
     );
   }
