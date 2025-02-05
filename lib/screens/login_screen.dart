@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:twizzy/services/api_service.dart'; 
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -18,43 +17,24 @@ class _LoginState extends State<Login> {
     String username = _usernameController.text;
     String password = _passwordController.text;
 
-    final url = Uri.parse('http://192.168.1.234/twizzy/login.php');
-    final response = await http.post(
-      url,
-      body: {'username': username, 'password': password},
-    );
+    try {
+      final responseData = await ApiService.login(username, password);
 
-    // Debug the raw response body for potential errors
-    print('Response body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      try {
-        final responseData = json.decode(response.body);
-
-        if (responseData['status'] == 'success') {
-          Navigator.pushReplacementNamed(context, "/blog");
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(responseData['message']),
-              behavior: SnackBarBehavior.floating,
-              backgroundColor: Colors.redAccent,
-            ),
-          );
-        }
-      } catch (e) {
+      if (responseData['status'] == 'success') {
+        Navigator.pushReplacementNamed(context, "/blog");
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Unexpected response format: $e'),
+            content: Text(responseData['message']),
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.redAccent,
           ),
         );
       }
-    } else {
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Something went wrong, try again later'),
+          content: Text('Login failed: $e'),
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.redAccent,
         ),
@@ -102,7 +82,7 @@ class _LoginState extends State<Login> {
                   controller: _usernameController,
                   style: TextStyle(color: Colors.black87),
                   decoration: InputDecoration(
-                    hintText: 'username',
+                    hintText: 'Username',
                     hintStyle: TextStyle(color: Colors.black45),
                     filled: true,
                     fillColor: Colors.white,
