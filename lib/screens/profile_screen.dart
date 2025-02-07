@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -85,7 +86,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: Icons.logout,
                 text: AppLocalizations.of(context)!.logout,
                 iconColor: Colors.redAccent,
-                onTap: () => Navigator.pushReplacementNamed(context, '/login'),
+  onTap: () async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('jwt_token');
+    Navigator.pushReplacementNamed(context, '/login');
+  }
               ),
             ],
           ),

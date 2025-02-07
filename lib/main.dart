@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:twizzy/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:twizzy/screens/trending_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
             '/register': (context) => const Register(),
             '/profile': (context) => ProfileScreen(),
             '/blog': (context) => BlogScreen(),
+            '/trending': (context) => TrendingScreen(),
             '/edit_profile': (context) => EditProfileScreen(),
           },
         );

@@ -6,12 +6,12 @@ import 'package:twizzy/widgets/blog_post_card.dart';
 import 'package:twizzy/widgets/add_post_dialog.dart';
 import 'package:twizzy/widgets/search_bar_widget.dart';
 
-class BlogScreen extends StatefulWidget {
+class TrendingScreen extends StatefulWidget {
   @override
-  _BlogScreenState createState() => _BlogScreenState();
+  _TrendingScreenState createState() => _TrendingScreenState();
 }
 
-class _BlogScreenState extends State<BlogScreen> {
+class _TrendingScreenState extends State<TrendingScreen> {
   List<Post> blogPosts = [];
   List<Post> filteredPosts = [];
   List<List<String>> comments = [];
@@ -20,12 +20,12 @@ class _BlogScreenState extends State<BlogScreen> {
   @override
   void initState() {
     super.initState();
-    fetchBlogPosts();
+    fetchTrendingPosts();
     searchController.addListener(_filterPosts);
   }
 
-  Future<void> fetchBlogPosts() async {
-    final posts = await PostService.fetchAllPosts();
+  Future<void> fetchTrendingPosts() async {
+    final posts = await PostService.fetchTrendingPosts();
     setState(() {
       blogPosts = posts;
       filteredPosts = posts;
@@ -45,7 +45,7 @@ class _BlogScreenState extends State<BlogScreen> {
 
   Future<void> addNewPost(String content) async {
     await PostService.createPost(content);
-    fetchBlogPosts();
+    fetchTrendingPosts();
   }
 
   void showAddPostDialog() {
@@ -129,7 +129,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         backgroundColor: Colors.green,
                       ),
                     );
-                                      fetchBlogPosts();
+                                      fetchTrendingPosts();
                     }
                     else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -156,7 +156,7 @@ class _BlogScreenState extends State<BlogScreen> {
   void _deletePost(Post post) async {
     var test= await PostService.deletePost(post.id);
     if(test){
-      fetchBlogPosts();
+      fetchTrendingPosts();
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Post deleted successfully"),
@@ -184,21 +184,15 @@ class _BlogScreenState extends State<BlogScreen> {
     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp, color: Colors.white),
   ),
   leading: Padding(
-    padding: EdgeInsets.only(left: 10), // Adjust padding if needed
+    padding: EdgeInsets.only(left: 10), // Adjust spacing
     child: IconButton(
-      icon: ShaderMask(
-        shaderCallback: (Rect bounds) {
-          return LinearGradient(
-            colors: [Colors.orange, Colors.yellow],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ).createShader(bounds);
-        },
-        child: Icon(Icons.local_fire_department, color: Colors.white, size: 30.r),
+      onPressed: () {
+  Navigator.pushReplacementNamed(context, '/blog');
+      },
+      icon: Text(
+        "🏃‍♂️", // Running man emoji
+        style: TextStyle(fontSize: 28), // Adjust size
       ),
-
-        onPressed: () => Navigator.pushReplacementNamed(context, '/trending'), 
-
     ),
   ),
   actions: [
@@ -209,7 +203,7 @@ class _BlogScreenState extends State<BlogScreen> {
   ],
   backgroundColor: Colors.blueAccent,
   centerTitle: true,
-elevation: 5,
+  elevation: 5,
 ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,

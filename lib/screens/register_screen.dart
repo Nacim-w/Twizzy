@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:twizzy/services/api_service.dart';
+import 'package:twizzy/services/auth_service.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
 
 
   try {
-    final response = await ApiService.register(username, password, email);
+    final response = await AuthService.register(username, password, email);
     _showSnackbar(AppLocalizations.of(context)!.register, Colors.green);
     print("Registration successful: $response");
     Navigator.pushReplacementNamed(context, "/login");

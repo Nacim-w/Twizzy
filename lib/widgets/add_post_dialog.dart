@@ -23,7 +23,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
       backgroundColor: Colors.white,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: Colors.white,
           borderRadius: BorderRadius.circular(15.r),
         ),
         padding: EdgeInsets.all(20.w),

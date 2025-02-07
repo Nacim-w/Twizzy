@@ -1,9 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:twizzy/services/api_service.dart';
+import 'package:twizzy/models/user_model.dart'; // Ensure you have the User model
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
+
+  @override
+  _EditProfileScreenState createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  String userId = "";  // Will be populated when the user is logged in
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch user data from the API or SharedPreferences
+    _loadUserData();
+  }
+
+  // Fetch the user data (from API or SharedPreferences)
+  Future<void> _loadUserData() async {
+    try {
+      // Here you would fetch the current user data (you can get it from an API or local storage)
+      // Simulate fetching data
+      // User currentUser = await ApiService.getUserProfile(); // Uncomment if API is available
+      // For now, let's use mock data:
+      User currentUser = User(id: "1", username: "ActualUsername", email: "actualuser@example.com", password: "");
+
+      // Set the values to the controllers
+      setState(() {
+        userId = currentUser.id;
+        usernameController.text = currentUser.username;
+        emailController.text = currentUser.email;
+      });
+    } catch (e) {
+      // Handle errors, such as network failure
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to load user data")));
+    }
+  }
+
+  Future<void> _saveChanges() async {
+    String updatedUsername = usernameController.text.trim();
+    String updatedEmail = emailController.text.trim();
+
+    if (updatedUsername.isEmpty || updatedEmail.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please fill out all fields")));
+      return;
+    }
+
+    // Create the updated user object
+    User updatedUser = User(
+      id: userId,
+      username: updatedUsername,
+      email: updatedEmail,
+      password: "", // Password is not being updated here, but it could be.
+    );
+
+    try {
+      Map<String, dynamic> response = await ApiService.updateUser(userId, updatedUser);
+
+      if (response.containsKey("message") && response["message"] == "User updated successfully!") {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Profile updated successfully")));
+        Navigator.pop(context); // Go back after successful update
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to update profile")));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $e")));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +127,14 @@ class EditProfileScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 30.h),
-            _buildInputField(AppLocalizations.of(context)!.username, "John Doe"),
+            _buildInputField(AppLocalizations.of(context)!.username, usernameController),
             SizedBox(height: 20.h),
-            _buildInputField(AppLocalizations.of(context)!.email, "johndoe@example.com"),
+            _buildInputField(AppLocalizations.of(context)!.email, emailController),
             SizedBox(height: 30.h),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: _saveChanges, // Call _saveChanges when the user taps Save Changes
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16.h),
                   backgroundColor: Colors.blueAccent,
@@ -88,7 +158,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInputField(String label, String hint) {
+  Widget _buildInputField(String label, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -98,9 +168,10 @@ class EditProfileScreen extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         TextField(
+          controller: controller,
           style: TextStyle(fontSize: 14.sp, color: Colors.black87),
           decoration: InputDecoration(
-            hintText: hint,
+            hintText: controller.text, // Display the current value in the hint
             hintStyle: TextStyle(color: Colors.black45, fontSize: 14.sp),
             filled: true,
             fillColor: Colors.white,
