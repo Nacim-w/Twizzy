@@ -8,41 +8,59 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.editprofile, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          AppLocalizations.of(context)!.editprofile,
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
-        foregroundColor: Colors.white,
-        elevation: 0,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.r)),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Stack(
               alignment: Alignment.bottomRight,
               children: [
-                CircleAvatar(
-                  radius: 50.r,
-                  backgroundColor: Colors.grey[300],
-                  backgroundImage: AssetImage("assets/profile_placeholder.png"),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 8.r,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: CircleAvatar(
+                    radius: 60.r,
+                    backgroundColor: Colors.grey[300],
+                    backgroundImage: AssetImage("assets/images/avatar.jpg"),
+                  ),
                 ),
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blueAccent,
                   ),
-                  padding: EdgeInsets.all(6.w),
-                  child: Icon(Icons.camera, color: Colors.white, size: 20.r),
+                  padding: EdgeInsets.all(8.w),
+                  child: Icon(Icons.camera_alt, color: Colors.white, size: 24.r),
                 )
               ],
             ),
             SizedBox(height: 30.h),
             _buildInputField(AppLocalizations.of(context)!.username, "John Doe"),
-            SizedBox(height: 15.h),
+            SizedBox(height: 20.h),
             _buildInputField(AppLocalizations.of(context)!.email, "johndoe@example.com"),
-            SizedBox(height: 25.h),
+            SizedBox(height: 30.h),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -57,7 +75,7 @@ class EditProfileScreen extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)!.savechanges,
                   style: TextStyle(
-                    fontSize: 10.sp,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -76,19 +94,23 @@ class EditProfileScreen extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(fontSize: 7.sp, fontWeight: FontWeight.w600, color: Colors.black87),
+          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: Colors.black87),
         ),
         SizedBox(height: 5.h),
         TextField(
-          style: TextStyle(color: Colors.black87),
+          style: TextStyle(fontSize: 14.sp, color: Colors.black87),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: Colors.black45),
+            hintStyle: TextStyle(color: Colors.black45, fontSize: 14.sp),
             filled: true,
-            fillColor: Colors.grey[100],
+            fillColor: Colors.white,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
             ),
             contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           ),

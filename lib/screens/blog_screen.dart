@@ -25,7 +25,7 @@ class _BlogScreenState extends State<BlogScreen> {
   }
 
   Future<void> fetchBlogPosts() async {
-    final posts = await ApiService.fetchBlogPost();
+    final posts = await ApiService.fetchAllPosts();
     setState(() {
       blogPosts = posts;
       filteredPosts = posts;
@@ -58,45 +58,63 @@ class _BlogScreenState extends State<BlogScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Blog", style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.white)),
+        title: Text(
+          "Blog",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp, color: Colors.white),
+        ),
         actions: [
           IconButton(
-            icon:  Icon(Icons.person,color: Colors.white,size: 30.r,),
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, '/profile'),
+            icon: Icon(Icons.person, color: Colors.white, size: 28.r),
+            onPressed: () => Navigator.pushReplacementNamed(context, '/profile'),
           ),
         ],
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
+        elevation: 5,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         onPressed: showAddPostDialog,
-        child: Icon(Icons.add, color: Colors.white),
+        child: Icon(Icons.add, color: Colors.white, size: 24.r),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
       ),
-      body: Column(
-        children: [
-          SearchBarWidget(
-            controller: searchController,
-            onChanged: (value) => _filterPosts(),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredPosts.length,
-              itemBuilder: (context, index) {
-                return BlogPostCard(
-                  post: filteredPosts[index],
-                  onCommentAdded: (comment) {
-                    setState(() {
-                      comments[index].add(comment);
-                    });
-                  },
-                  comments: comments[index],
-                );
-              },
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        child: Column(
+          children: [
+            SearchBarWidget(
+              controller: searchController,
+              onChanged: (value) => _filterPosts(),
             ),
-          ),
-        ],
+            SizedBox(height: 10.h),
+            Expanded(
+              child: filteredPosts.isEmpty
+                  ? Center(
+                      child: Text(
+                        "No posts available",
+                        style: TextStyle(fontSize: 16.sp, color: Colors.black54),
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: filteredPosts.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 10.h),
+                          child: BlogPostCard(
+                            post: filteredPosts[index],
+                            onCommentAdded: (comment) {
+                              setState(() {
+                                comments[index].add(comment);
+                              });
+                            },
+                            comments: comments[index],
+                          ),
+                        );
+                      },
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

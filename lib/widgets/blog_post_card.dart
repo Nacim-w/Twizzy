@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twizzy/models/post_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class BlogPostCard extends StatefulWidget {
   final Post post;
   final Function(String) onCommentAdded;
@@ -60,7 +61,8 @@ class _BlogPostCardState extends State<BlogPostCard> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.addcomment),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+        title: Text(AppLocalizations.of(context)!.addcomment, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
         content: TextField(
           onChanged: (value) => newComment = value,
           decoration: InputDecoration(hintText: AppLocalizations.of(context)!.addcomment),
@@ -85,34 +87,47 @@ class _BlogPostCardState extends State<BlogPostCard> {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+      elevation: 5,
       child: Padding(
-        padding: EdgeInsets.all(12.0.w),
+        padding: EdgeInsets.all(16.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.post.content, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8.h),
+            Text(widget.post.content, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10.h),
             Row(
               children: [
-                IconButton(icon: Icon(Icons.thumb_up, color: hasLiked ? Colors.blue : Colors.grey), onPressed: toggleLike),
-                Text('$likes'),
+                IconButton(
+                  icon: Icon(Icons.thumb_up, color: hasLiked ? Colors.blue : Colors.grey),
+                  onPressed: toggleLike,
+                ),
+                Text('$likes', style: TextStyle(fontSize: 14.sp)),
                 SizedBox(width: 16.w),
-                IconButton(icon: Icon(Icons.thumb_down, color: hasDisliked ? Colors.red : Colors.grey), onPressed: toggleDislike),
-                Text('$dislikes'),
+                IconButton(
+                  icon: Icon(Icons.thumb_down, color: hasDisliked ? Colors.red : Colors.grey),
+                  onPressed: toggleDislike,
+                ),
+                Text('$dislikes', style: TextStyle(fontSize: 14.sp)),
                 Spacer(),
                 TextButton.icon(
                   onPressed: showCommentDialog,
                   icon: Icon(Icons.comment, color: Colors.blueAccent),
-                  label: Text(AppLocalizations.of(context)!.addcomment, style: TextStyle(color: Colors.blueAccent)),
+                  label: Text(
+                    AppLocalizations.of(context)!.addcomment,
+                    style: TextStyle(color: Colors.blueAccent, fontSize: 14.sp),
+                  ),
                 ),
               ],
             ),
             if (widget.comments.isNotEmpty) ...[
               Divider(),
-              Text('Comments:', style: TextStyle(fontWeight: FontWeight.bold)),
-              ...widget.comments.map((c) => Text(c)).toList(),
+              Text('Comments:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp)),
+              SizedBox(height: 5.h),
+              ...widget.comments.map((c) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3.h),
+                    child: Text(c, style: TextStyle(fontSize: 14.sp, color: Colors.black87)),
+                  )),
             ],
           ],
         ),

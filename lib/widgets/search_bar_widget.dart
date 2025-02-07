@@ -15,7 +15,7 @@ class SearchBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 15.0.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -23,7 +23,7 @@ class SearchBarWidget extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
+              blurRadius: 10.r,
               offset: Offset(0, 4),
             ),
           ],
@@ -31,9 +31,11 @@ class SearchBarWidget extends StatelessWidget {
         child: TextField(
           controller: controller,
           onChanged: onChanged,
+          style: TextStyle(fontSize: 14.sp, color: Colors.black87),
           decoration: InputDecoration(
             hintText: AppLocalizations.of(context)!.searchposts,
-            prefixIcon: Icon(Icons.search, color: Colors.grey),
+            hintStyle: TextStyle(color: Colors.black45, fontSize: 14.sp),
+            prefixIcon: Icon(Icons.search, color: Colors.grey, size: 22.r),
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
           ),

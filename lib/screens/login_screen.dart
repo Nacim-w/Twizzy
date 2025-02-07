@@ -5,7 +5,7 @@ import 'package:twizzy/services/api_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatefulWidget {
-  final Function(String) changeLanguage; // Function to change language
+  final Function(String) changeLanguage;
 
   const Login({super.key, required this.changeLanguage});
 
@@ -18,13 +18,23 @@ class _LoginState extends State<Login> {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> _login(BuildContext context) async {
-    String username = _usernameController.text;
-    String password = _passwordController.text;
+    String username = _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.fillallfields),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.orangeAccent,
+        ),
+      );
+      return;
+    }
 
     try {
       final responseData = await ApiService.login(username, password);
-
-      if (responseData['status'] == 'success') {
+      if (responseData['message'] == 'Login successful') {
         Navigator.pushReplacementNamed(context, "/blog");
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -38,7 +48,7 @@ class _LoginState extends State<Login> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Login failed: $e'),
+          content: Text(AppLocalizations.of(context)!.loginFailed),
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.redAccent,
         ),
@@ -49,34 +59,50 @@ class _LoginState extends State<Login> {
   void _exitApp() {
     SystemNavigator.pop();
   }
-
+Widget _buildTextField(TextEditingController controller, String hint, bool obscure) {
+    return TextField(
+      controller: controller,
+      obscureText: obscure,
+      style: TextStyle(color: Colors.black87, fontSize: 14.sp),
+      decoration: InputDecoration(
+        hintText: hint,
+        hintStyle: TextStyle(color: Colors.black45, fontSize: 14.sp),
+        filled: true,
+        fillColor: Colors.grey[100],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.r),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Container(
-            padding: EdgeInsets.all(24.w),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(20.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.r,
-                  spreadRadius: 2.r,
-                  offset: Offset(0, 5),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 120.h),
+            child: Container(
+              padding: EdgeInsets.all(24.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10.r,
+                    spreadRadius: 2.r,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
                       icon: Icon(Icons.language),
                       onPressed: () {
                         final currentLocale =
@@ -85,118 +111,97 @@ class _LoginState extends State<Login> {
                         widget.changeLanguage(newLocale);
                       },
                     ),
-                    Text(
-                      Localizations.localeOf(context).languageCode == 'en'
-                          ? 'EN'
-                          : 'FR',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/icon.png',
+                        height: 80.h,
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  AppLocalizations.of(context)!.login,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                TextField(
-                  controller: _usernameController,
-                  style: TextStyle(color: Colors.black87),
-                  decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context)!.username,
-                    hintStyle: TextStyle(color: Colors.black45),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.r),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-                  ),
-                ),
-                SizedBox(height: 15.h),
-                TextField(
-                  controller: _passwordController,
-                  style: TextStyle(color: Colors.black87),
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context)!.password,
-                    hintStyle: TextStyle(color: Colors.black45),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.r),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-                  ),
-                ),
-                SizedBox(height: 25.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: _exitApp,
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 23.w, vertical: 15.h),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.r),
+                      SizedBox(height: 20.h),
+                      Text(
+                        AppLocalizations.of(context)!.loginslogan,
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
-                      child: Text(
-                        AppLocalizations.of(context)!.exit,
-                        style: TextStyle(
-                            fontSize: 8.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                      SizedBox(height: 30.h),
+                      _buildTextField(_usernameController,
+                          AppLocalizations.of(context)!.username, false),
+                      SizedBox(height: 15.h),
+                      SizedBox(height: 15.h),
+                      _buildTextField(_passwordController,
+                          AppLocalizations.of(context)!.password, true),
+                      SizedBox(height: 25.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: _exitApp,
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                backgroundColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(context)!.exit,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 15.w),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () => _login(context),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                backgroundColor: Colors.blueAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(context)!.login,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () => _login(context),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 15.h),
-                        backgroundColor: Colors.blueAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.r),
+                      SizedBox(height: 20.h),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/register');
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.gotoregister,
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
-                      child: Text(
-                        AppLocalizations.of(context)!.login,
-                        style: TextStyle(
-                            fontSize: 8.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, '/register');
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.gotoregister,
-                    style: TextStyle(
-                      fontSize: 7.sp,
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -8,12 +8,20 @@
   "@login": {
     "description": "hint text for login "
   },
+  "loginslogan": "Enter & Explore",
+  "@loginslogan": {
+    "description": "hint text for login "
+  },
   "email": "Email",
   "@email": {
     "description": "hint text for email field"
   },
-  "register": "register",
+  "register": "Register",
   "@register": {
+    "description": "A simple register msg"
+  },
+  "registerslogan": "Join the Journey",
+  "@registerslogan": {
     "description": "A simple register msg"
   },
   "password": "Password",
@@ -87,6 +95,23 @@
   "editprofile": "Edit Profile",
   "@editprofile": {
     "description": "Edit Profile"
+  },
+  "passwordMismatch": "password Mismatch",
+  "@passwordMismatch": {
+    "description": "password Mismatch"
+  },"registrationfailed": "Registration Failed",
+  "@registrationfailed": {
+    "description": "registration Failed"
+  },"serverError": "Server Error",
+  "@serverError": {
+    "description": "Server Error"
+  },
+  "fillallfields": "Fill All Fields ",
+  "@fillallfields": {
+    "description": "Server Error"
+  },"loginFailed": "login Failed",
+  "@loginFailed": {
+    "description": "login Failed"
   },
   "multipleLanguages": "Multiple Languages",
   "@multipleLanguages": {

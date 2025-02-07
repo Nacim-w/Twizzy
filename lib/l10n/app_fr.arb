@@ -91,5 +91,33 @@
     "gotologin": "Vous avez déjà un compte ? Connectez-vous",
     "@gotologin": {
         "description": "aller à la page de connexion"
+    },
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "@passwordMismatch": {
+        "description": "message d'erreur lorsque les mots de passe ne correspondent pas"
+    },
+    "registrationfailed": "Échec de l'inscription",
+    "@registrationfailed": {
+        "description": "message d'erreur lorsque l'inscription échoue"
+    },
+    "serverError": "Erreur du serveur",
+    "@serverError": {
+        "description": "message d'erreur lorsque le serveur rencontre un problème"
+    },
+    "fillallfields": "Veuillez remplir tous les champs",
+    "@fillallfields": {
+        "description": "message d'erreur lorsque tous les champs ne sont pas remplis"
+    },
+    "loginFailed": "Échec de la connexion",
+    "@loginFailed": {
+        "description": "message d'erreur lorsque la connexion échoue"
+    },
+    "loginslogan": "Entrez et Explorez",
+    "@loginslogan": {
+        "description": "slogan pour la page de connexion"
+    },
+    "registerslogan": " Rejoignez l'Aventure",
+    "@registerslogan": {
+        "description": "slogan pour la page d'inscription"
     }
 }

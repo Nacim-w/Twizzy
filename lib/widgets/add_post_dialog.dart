@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class AddPostDialog extends StatefulWidget {
   final Function(String) onPostAdded;
 
@@ -19,10 +18,15 @@ class _AddPostDialogState extends State<AddPostDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.w),
+        borderRadius: BorderRadius.circular(15.r),
       ),
-      child: Padding(
-        padding:  EdgeInsets.all(16.w),
+      backgroundColor: Colors.white,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        padding: EdgeInsets.all(20.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,25 +34,28 @@ class _AddPostDialogState extends State<AddPostDialog> {
             Text(
               AppLocalizations.of(context)!.newblogpost,
               style: TextStyle(
-                fontSize: 10.sp,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+                color: Colors.black87,
               ),
             ),
-            SizedBox(height: 12.h),
+            SizedBox(height: 15.h),
             TextField(
               onChanged: (value) => newPostContent = value,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.blogcontent,
+                hintStyle: TextStyle(color: Colors.black45, fontSize: 14.sp),
+                filled: true,
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide.none,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
                 ),
-                contentPadding: EdgeInsets.all(10.w),
+                contentPadding: EdgeInsets.all(15.w),
               ),
               maxLines: 5,
             ),
@@ -60,7 +67,7 @@ class _AddPostDialogState extends State<AddPostDialog> {
                   onPressed: () => Navigator.pop(context),
                   child: Text(
                     AppLocalizations.of(context)!.cancel,
-                    style: TextStyle(color: Colors.blueAccent),
+                    style: TextStyle(color: Colors.blueAccent, fontSize: 14.sp),
                   ),
                 ),
                 SizedBox(width: 10.w),
@@ -73,13 +80,15 @@ class _AddPostDialogState extends State<AddPostDialog> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
-                  child: Text(AppLocalizations.of(context)!.postbutton),
+                  child: Text(
+                    AppLocalizations.of(context)!.postbutton,
+                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                 ),
               ],
             ),
